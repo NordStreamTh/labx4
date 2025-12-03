@@ -29,10 +29,10 @@ jobs:
         pip install pytest
 
     - name: Run tests
-      shell: bash
       run: |
-        if [ "$RUNNER_OS" = "Windows" ]; then
-            set PYTHONPATH=. && pytest tests/test_square.py
+        if [ "${{ runner.os }}" == "Windows" ]; then
+            set PYTHONPATH=%CD% && pytest tests/test_square.py
         else
             PYTHONPATH=. pytest tests/test_square.py
         fi
+      shell: bash
