@@ -26,4 +26,5 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest tests/test_square.py
+        PYTHONPATH=. pytest tests/test_square.py
+
