@@ -16,8 +16,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -30,5 +29,10 @@ jobs:
         pip install pytest
 
     - name: Run tests
+      shell: bash
       run: |
-        PYTHONPATH=. pytest tests/test_square.py
+        if [ "$RUNNER_OS" = "Windows" ]; then
+            set PYTHONPATH=. && pytest tests/test_square.py
+        else
+            PYTHONPATH=. pytest tests/test_square.py
+        fi
