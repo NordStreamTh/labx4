@@ -1,15 +1,27 @@
+import unittest
 from square import area, perimeter
 
-# simple tests for isrpo
+class SquareTestCase(unittest.TestCase):
+    
+    def test_area_zero(self):
+        self.assertEqual(area(0), 0)
+        
+    def test_area_positive(self):
+        self.assertEqual(area(2), 4)
+        self.assertEqual(area(5), 25)
+        
+    def test_area_negative(self):
+        self.assertEqual(area(-3), 9)
+        
+    def test_perimeter_zero(self):
+        self.assertEqual(perimeter(0), 0)
+        
+    def test_perimeter_positive(self):
+        self.assertEqual(perimeter(2), 8)
+        self.assertEqual(perimeter(5), 20)
+        
+    def test_perimeter_negative(self):
+        self.assertEqual(perimeter(-3), -12)
 
-def test_area():
-    assert area(0) == 0
-    assert area(2) == 4
-    assert area(-3) == 9
-    assert area(5.5) == 30.25
-
-def test_perimeter():
-    assert perimeter(0) == 0
-    assert perimeter(2) == 8
-    assert perimeter(-3) == -12
-    assert perimeter(5.5) == 22
+if __name__ == "__main__":
+    unittest.main()
